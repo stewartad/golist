@@ -27,6 +27,24 @@ func (l *list) AppendToTail(d int) {
 	}
 }
 
+func (l *list) RemoveFromTail() {
+	if l.head == l.tail {
+		l.head = nil
+		l.tail = nil
+		return
+	}
+	p := l.head
+	for p.next != l.tail {
+		p = p.next
+	}
+	l.tail = p
+	p.next = nil
+}
+
+func (l *list) RemoveFromHead() {
+	l.head = l.head.next
+}
+
 func (l *list) AppendToHead(d int) {
 	tmp := &node{data: d, next: l.head}
 	if l.head == nil {
